@@ -7,10 +7,10 @@ public class MyScript : MonoBehaviour
 
     //Mis variables
 
-    private string miString = "Hola mundo";
-    private int miInt = 5;
-    private float miFloat = 2f;
-    private bool miBool;
+    public string miString = "Hola mundo";
+    [SerializeField] int miInt = 5;
+    [SerializeField] float miFloat = 2f;
+    public bool miBool;
 
     // Start is called before the first frame update
     void Start()
