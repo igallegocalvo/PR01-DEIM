@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MyScript : MonoBehaviour
 {
@@ -9,21 +10,35 @@ public class MyScript : MonoBehaviour
     private int seg;
     private int min;
     private int horas;
+    private bool activaReloj;
+    [SerializeField] Text miTexto;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("Reloj");
+        miTexto.text = "Pulsa barra espaciadora para iniciar";
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+       if (Input.GetKeyDown(KeyCode.Space) && activaReloj == false)
+        {
+            StartCoroutine("Reloj");
+            activaReloj = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Space) && activaReloj == true)
+        {
+            StopCoroutine("Reloj");
+            activaReloj = false;
+            miTexto.text = "PAUSE";
+        }
     }
 
    IEnumerator Reloj()
     {
+        string relojText;
+        
         while (true)
         {
             yield return new WaitForSeconds(1f);
@@ -37,7 +52,8 @@ public class MyScript : MonoBehaviour
                 min = 0;
                 horas++;
             }
-            print(horas.ToString("D2") + ":" + min.ToString("D2") + ":" + seg.ToString("D2"));
+            relojText = horas.ToString("D2") + ":" + min.ToString("D2") + ":" + seg.ToString("D2");
+            miTexto.text = relojText;
             seg++;
         };
     }
