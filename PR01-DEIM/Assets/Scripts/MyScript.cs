@@ -11,7 +11,7 @@ public class MyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Saludo(nombre);
+        print(Saludo());
     }
 
     // Update is called once per frame
@@ -21,8 +21,8 @@ public class MyScript : MonoBehaviour
     }
 
     // Método de saludo
-    void Saludo(string name)
+    string Saludo()
     {
-        print ("Hola " + name);
+        return ("Hola " + nombre);
     }
 }
