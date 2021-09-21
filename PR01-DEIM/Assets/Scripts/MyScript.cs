@@ -7,20 +7,16 @@ public class MyScript : MonoBehaviour
 
     //Mis variables
 
-    public string miString = "Hola mundo";
-    [SerializeField] int miInt = 5;
-    [SerializeField] float miFloat = 2f;
-    public bool miBool;
+    private string saludo = "Hola ";
+    [SerializeField] string nombre = "personita anónima";
+    public int num1 = 5;
+    public int num2 = 2;
 
     // Start is called before the first frame update
     void Start()
     {
-        print(miString);
-        print(miInt);
-        print(miFloat);
-        print(miBool);
-        
-        
+        print(saludo + nombre + ", el resultado de multiplicar " + num1 + " y " + num2 +" es:");
+        print(num1 * num2);
     }
 
     // Update is called once per frame
