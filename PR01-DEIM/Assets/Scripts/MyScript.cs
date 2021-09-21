@@ -6,12 +6,15 @@ public class MyScript : MonoBehaviour
 {
 
     //Mis variables
-    [SerializeField] string nombre = "personita anónima";
-    
+    [SerializeField] int num1; 
+    [SerializeField] int num2; 
+    [SerializeField] int operador;
+    int resultado;
+
     // Start is called before the first frame update
     void Start()
     {
-        print(Saludo());
+        Calcular(); 
     }
 
     // Update is called once per frame
@@ -21,8 +24,29 @@ public class MyScript : MonoBehaviour
     }
 
     // Método de saludo
-    string Saludo()
+    void Calcular()
     {
-        return ("Hola " + nombre);
+        //Si, se puede hacer con un switch, pero nunca se me dieron bien :)
+        if (operador == 0)
+        {
+            resultado = num1 + num2;
+        }
+        else if (operador == 1)
+        {
+            resultado = num1 - num2;
+        }
+        else if (operador == 2)
+        {
+            resultado = num1 * num2;
+        }
+        else if (operador == 3)
+        {
+            resultado = num1 / num2;
+        }
+        else
+        {
+            print("Introduce un valor entre 0 y 3, ambos incluidos");
+        }
+        print(resultado);
     }
 }
