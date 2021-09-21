@@ -6,12 +6,14 @@ public class MyScript : MonoBehaviour
 {
 
     //Mis variables
-    private int num = 0;
+    private int seg;
+    private int min;
+    private int horas;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("Contador");
+        StartCoroutine("Reloj");
     }
 
     // Update is called once per frame
@@ -20,13 +22,23 @@ public class MyScript : MonoBehaviour
        
     }
 
-   IEnumerator Contador()
+   IEnumerator Reloj()
     {
-        while (num <= 10)
+        while (true)
         {
             yield return new WaitForSeconds(1f);
-            print(num);
-            num++;
+            if (seg == 60)
+            {
+                seg = 0;
+                min++;
+            }
+            if (min == 60)
+            {
+                min = 0;
+                horas++;
+            }
+            print(horas.ToString("D2") + ":" + min.ToString("D2") + ":" + seg.ToString("D2"));
+            seg++;
         };
     }
     
