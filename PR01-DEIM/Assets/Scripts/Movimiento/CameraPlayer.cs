@@ -26,6 +26,7 @@ public class CameraPlayer : MonoBehaviour
     {
         transform.LookAt(playerPosition);
 
+        //float newPosX = playerPosition.position.x;    si queremos la cámara siempre centrada, añadir esto como posición de x
         float newPosY = playerPosition.position.y + alturaCamamara;
         float newPosZ = playerPosition.position.z - distanciaJugador;
 
