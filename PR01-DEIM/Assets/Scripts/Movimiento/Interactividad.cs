@@ -18,7 +18,7 @@ public class Interactividad : MonoBehaviour
     void Update()
     {
         Movimiento();
-        
+
     }
 
     void Movimiento()
@@ -30,14 +30,21 @@ public class Interactividad : MonoBehaviour
         //Maximos y minimos del eje Y en función del tamaño del encuadre
         float maxY = 5.7f;
         float minY = -3.7f;
-        
+                    
         //Posición del objeto en X e Y
         float posicionX = transform.position.x;
         float posicionY = transform.position.y;
 
+        //Posición del objeto en Z
+        float posicionZ = transform.position.z;
+
         //Variables para que el código quede bonito
         float despX = Input.GetAxis("Horizontal");
         float despY = Input.GetAxis("Vertical");
+
+        //Movimiento de avance y retroceso con los botones X e Y
+        bool avance = Input.GetButton("Fire3");
+        bool retroceso = Input.GetButton("Jump");
 
 
         //Movimiento de la "nave" hacia up, down, left, right
@@ -45,24 +52,9 @@ public class Interactividad : MonoBehaviour
 
         transform.Translate(Vector3.up * despY * speed * Time.deltaTime);
 
-        //Limitación de movimiento al encuadre de cámara
-        if (posicionX >= maxX && despX > 0 || posicionX <= minX && despX < 0
-            || posicionY >= maxY && despY > 0 || posicionY <= minY && despY < 0)
-        {
-            speed = 0f;
-        }
-        else
-        {
-            speed = 5f;
-        }
 
-        //Movimiento de avance y retroceso
-        bool avance = Input.GetButton("Fire3");
-        bool retroceso = Input.GetButton("Jump");
-
-        //Posición del objeto en Z
-        float posicionZ = transform.position.z;
-
+        //Movimiento en el eje Z 
+        //Avance
         if (avance && posicionZ<=10)
         {
             speed = 5f;
@@ -72,7 +64,8 @@ public class Interactividad : MonoBehaviour
         {
             speed = 0f;
         }
-
+        
+        //Retroceso
         if (retroceso && posicionZ > 0)
         {
             speed = 5f;
@@ -81,6 +74,18 @@ public class Interactividad : MonoBehaviour
         else if (retroceso && posicionZ <= 0)
         {
             speed = 0f;
+        }
+
+
+        //Limitación de movimiento al encuadre de cámara
+        if ((posicionX >= maxX && despX > 0) || (posicionX <= minX && despX < 0)
+            || (posicionY >= maxY && despY > 0) || (posicionY <= minY && despY < 0))
+        {
+            speed = 0f;
+        }
+        else
+        {
+            speed = 5f;
         }
 
         /*Hay un pequeño bug: cuando llega al limite de avance y retroceso, si sigo pulsando el boton de avanzar o retroceder
